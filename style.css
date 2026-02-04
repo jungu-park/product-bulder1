@@ -280,8 +280,11 @@ button:hover {
 }
 
 #webcam-container {
-    /* Hidden by default in index.html, no active styling needed here */
-    display: none;
+    #webcam-container {
+        display: none; /* 기본은 숨김 */
+        margin: 20px auto; /* 가운데 정렬 추가 */
+        justify-content: center; /* 내부 요소 가운데 정렬 */
+    }
 }
 
 #uploaded-image-container {
@@ -289,7 +292,9 @@ button:hover {
     border: 1px solid var(--text-color);
     border-radius: 5px;
     overflow: hidden;
-    display: inline-block; /* To center the canvas */
+    display: block; /* To center the canvas */
+    margin: 20px auto;
+
     width: 200px;
     height: 200px;
     background-color: #000; /* Black background for webcam area */
