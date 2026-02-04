@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-App Platform</title>
+    <meta name="description" content="A multi-functional web application featuring a Lotto Number Generator, partnership inquiry form, animal look-alike test using AI, and a comment section.">
+    <meta name="keywords" content="lotto, lottery, inquiry form, animal test, teachable machine, disqus, web app, multi-app, Google AdSense">
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6892417081710938"
      crossorigin="anonymous"></script>
@@ -21,6 +23,7 @@
         <button class="nav-button" data-section="lotto">로또 번호 생성기</button>
         <button class="nav-button" data-section="inquiry">제휴 문의</button>
         <button class="nav-button" data-section="animal-test">동물상 테스트</button>
+        <button class="nav-button" data-section="about">About</button>
     </nav>
 
     <div id="lotto" class="app-section active">
@@ -52,6 +55,7 @@
     <div id="animal-test" class="app-section">
         <div class="container teachable-machine-container">
             <h1>동물상</h1>
+            <p>카메라 또는 이미지를 업로드하여 당신의 동물상을 테스트해보세요! 강아지상인지 고양이상인지 인공지능이 분석해줍니다.</p>
             <div class="test-options">
                 <button id="startWebcamBtn">카메라 시작</button>
                 <input type="file" id="uploadImage" accept="image/*" style="display: none;">
@@ -63,6 +67,16 @@
                 <canvas id="uploadedCanvas"></canvas>
             </div>
             <div id="label-container"></div>
+        </div>
+    </div>
+
+    <div id="about" class="app-section">
+        <div class="container about-container">
+            <h2>About This Platform</h2>
+            <p>이 플랫폼은 다양한 웹 애플리케이션 기능을 한 곳에 모아 제공합니다. 로또 번호 생성, 제휴 문의, 인공지능 기반 동물상 테스트, 그리고 사용자 댓글 기능까지 편리하게 이용하실 수 있습니다.</p>
+            <p>지속적으로 새로운 기능과 개선사항을 추가하여 더욱 풍부한 사용자 경험을 제공할 예정입니다.</p>
+            <h3>Privacy Policy</h3>
+            <p>본 사이트는 사용자로부터 개인 식별 정보를 직접 수집하지 않습니다. Disqus 댓글 시스템은 자체적인 개인정보 처리 방침에 따라 운영되며, Google AdSense는 광고 게재를 위해 쿠키를 사용할 수 있습니다. 자세한 내용은 해당 서비스의 개인정보 처리 방침을 참조해주세요.</p>
         </div>
     </div>
 
