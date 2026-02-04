@@ -206,3 +206,14 @@ input:checked + .slider:before {
 .form-container button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+/* Disqus Specific Styles */
+.disqus-container {
+    margin-top: 40px; /* Add margin to separate from previous container */
+    padding: 20px;
+    background-color: var(--form-bg-color); /* Use similar background as form */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
