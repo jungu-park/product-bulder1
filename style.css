@@ -330,3 +330,23 @@ button:hover {
     max-width: 400px; /* Reduced width for comment section */
     box-sizing: border-box;
 }
+
+.file-upload {
+    display: flex;
+    flex-direction: column; /* 세로로 배치 */
+    align-items: center;    /* 가로축 기준 중앙 정렬 */
+    justify-content: center;
+    text-align: center;
+}
+
+#face-image {
+    display: block;
+    margin: 0 auto;        /* 좌우 여백을 자동으로 설정해 가운데 배치 */
+    margin-bottom: 20px;   /* 결과창과 간격을 띄움 */
+}
+
+.label-container {
+    width: 100%;           /* 부모 너비에 맞춤 */
+    max-width: 400px;      /* 너무 넓어지지 않게 최대 너비 제한 */
+    margin: 0 auto;        /* 가운데 정렬 */
+}
