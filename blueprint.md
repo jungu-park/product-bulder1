@@ -22,7 +22,7 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
         *   Ensured `webcam-container` is present and its `display: none;` inline style is removed (to be controlled by JS).
         *   `uploaded-image-container` is initially hidden (controlled by JS).
         *   **Added descriptive paragraph explaining the "동물상" test.**
-    *   **Added a new "About" section** with general platform information and a placeholder Privacy Policy statement.
+    *   **Refined "About" section:** Clearly separated "사이트 소개" (Site Introduction) and "개인정보처리방침" (Privacy Policy) using distinct `<h3>` headings. The main heading of the "About" section was changed to "소개".
     *   **Added basic SEO meta tags** (`description`, `keywords`) to the `<head>`.
     *   Added a navigation button for the "About" section.
     *   Confirmed restoration of Lotto Number Generator, Formspree Inquiry Form, and Disqus Comment Section.
