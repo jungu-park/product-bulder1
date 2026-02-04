@@ -279,7 +279,12 @@ button:hover {
     flex-wrap: wrap;
 }
 
-#webcam-container, #uploaded-image-container {
+#webcam-container {
+    /* Hidden by default in index.html, no active styling needed here */
+    display: none;
+}
+
+#uploaded-image-container {
     margin-top: 20px;
     border: 1px solid var(--text-color);
     border-radius: 5px;
@@ -289,6 +294,11 @@ button:hover {
     height: 200px;
     background-color: #000; /* Black background for webcam area */
 }
+
+#uploaded-image-container canvas {
+    display: block; /* Remove extra space below canvas */
+}
+
 
 #label-container {
     margin-top: 20px;
