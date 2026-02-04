@@ -1,14 +1,15 @@
-# Multi-App Platform (Lotto, Inquiry, 동물상, Disqus)
+# Multi-App Platform (Lotto, Inquiry, 동물상, Disqus, Google AdSense)
 
 ## Overview
 
-A single-page web application featuring multiple interactive tools: a Lotto Number Generator, a partnership inquiry form (Formspree integrated), an Animal Look-alike Test using Teachable Machine (with **both webcam and image upload functionality**), and a Disqus comment section. The platform supports dark/light theme switching.
+A single-page web application featuring multiple interactive tools: a Lotto Number Generator, a partnership inquiry form (Formspree integrated), an Animal Look-alike Test using Teachable Machine (with **both webcam and image upload functionality**), and a Disqus comment section. The platform supports dark/light theme switching and now includes Google AdSense integration.
 
 ## Project Outline
 
-*   **`index.html`**: The main HTML file, structured with distinct sections for each application and a navigation system to switch between them. Includes necessary library imports for Teachable Machine and Disqus.
+*   **`index.html`**: The main HTML file, structured with distinct sections for each application and a navigation system to switch between them. Includes necessary library imports for Teachable Machine and Disqus, plus Google AdSense script and meta tag in the `<head>`.
 *   **`style.css`**: The CSS file for styling all application sections, navigation, and maintaining a responsive design with dark/light theme support.
 *   **`main.js`**: The JavaScript file containing logic for theme switching, section navigation, lotto number generation, and the refactored Teachable Machine integration (**supporting both webcam and image upload** with prediction logic).
+*   **`ads.txt`**: A new file in the root directory for Google AdSense verification.
 *   **Teachable Machine Model**: Now loaded directly from a hosted URL (`https://teachablemachine.withgoogle.com/models/guvsM29DK/`). The local `my_model/` directory is no longer needed.
 
 ## Current Plan
@@ -20,6 +21,7 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
         *   Ensured `webcam-container` is present and its `display: none;` inline style is removed (to be controlled by JS).
         *   `uploaded-image-container` is initially hidden (controlled by JS).
     *   Confirmed restoration of Lotto Number Generator, Formspree Inquiry Form, and Disqus Comment Section.
+    *   **Google AdSense Integration:** Added the AdSense script and meta tag to the `<head>` section.
 2.  **Refactor `main.js`**:
     *   **Teachable Machine Model URL updated to online hosted model:** `https://teachablemachine.withgoogle.com/models/guvsM29DK/`.
     *   **Reintroduced all webcam-related functions and logic (`webcam`, `initWebcam`, `loop`, `predictWebcam`).**
@@ -35,8 +37,9 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
     *   Ensured styles are compatible with both webcam and image upload containers.
     *   **Added background color to prediction result divs** (`#label-container div`) using `var(--button-bg-color)` and `color: white;`.
     *   Ensured all styles are compatible with dark/light themes.
-4.  **Removed `my_model` directory**: The local `my_model` directory has been deleted as it is no longer needed.
-5.  **Commit and Push**: Stage and commit all changes, then push to the remote repository.
+4.  **Created `ads.txt`**: A new file named `ads.txt` has been created in the root directory with the provided AdSense content.
+5.  **Removed `my_model` directory**: The local `my_model` directory has been deleted as it is no longer needed.
+6.  **Commit and Push**: Stage and commit all changes, then push to the remote repository.
 
 ## Important Note on Teachable Machine Functionality:
 
