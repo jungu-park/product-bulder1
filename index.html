@@ -50,12 +50,13 @@
         <div class="container teachable-machine-container">
             <h1>동물상</h1>
             <div class="test-options">
+                <button id="startWebcamBtn">카메라 시작</button>
                 <input type="file" id="uploadImage" accept="image/*" style="display: none;">
                 <button id="uploadImageBtn">이미지 업로드</button>
                 <button id="resetTestBtn" style="display: none;">초기화</button>
             </div>
-            <div id="webcam-container" style="display: none;"></div>
-            <div id="uploaded-image-container">
+            <div id="webcam-container"></div>
+            <div id="uploaded-image-container" style="display: none;">
                 <canvas id="uploadedCanvas"></canvas>
             </div>
             <div id="label-container"></div>

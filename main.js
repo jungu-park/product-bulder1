@@ -17,7 +17,7 @@ function switchTheme(e) {
         localStorage.setItem('theme', 'dark');
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('light', 'light');
     }
 }
 
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // If navigating to animal-test, ensure model is loaded
             loadModel();
-            // And ensure previous image/predictions are cleared if any
             resetTeachableMachine(); // To ensure clean state
         }
     }
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// --- Lotto Number Generator Logic (Restored) ---
+// --- Lotto Number Generator Logic (Retained) ---
 const generateBtn = document.getElementById('generate');
 const numbersDiv = document.getElementById('numbers');
 
@@ -88,18 +87,20 @@ if (generateBtn) {
 }
 
 
-// --- Teachable Machine Logic (Image Upload Only) ---
+// --- Teachable Machine Logic (Webcam and Image Upload) ---
 const URL = "./my_model/"; // User needs to ensure this path is correct and files exist
 
-let model, labelContainer, maxPredictions;
+let model, webcam, labelContainer, maxPredictions; // labelContainer here as per snippet
 let uploadedImageCanvas = null;
-let animationFrameId; // To store requestAnimationFrame ID - (No longer used for loop, but kept for consistency if needed)
+let animationFrameId; // To store requestAnimationFrame ID
 
 // Setup elements
+const startWebcamBtn = document.getElementById('startWebcamBtn');
 const uploadImageInput = document.getElementById('uploadImage');
 const uploadImageBtn = document.getElementById('uploadImageBtn');
+const webcamContainer = document.getElementById('webcam-container');
 const uploadedImageContainer = document.getElementById('uploaded-image-container');
-const labelContainerTM = document.getElementById('label-container');
+const labelContainerTM = document.getElementById('label-container'); // Renamed labelContainer from snippet to labelContainerTM to avoid conflict.
 const resetTestBtn = document.getElementById('resetTestBtn');
 
 
@@ -107,24 +108,69 @@ async function loadModel() {
     if (model) return; // Model already loaded
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
-    console.log("Teachable Machine model loaded.");
+    try {
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+        console.log("Teachable Machine model loaded.");
+    } catch (error) {
+        console.error("Failed to load Teachable Machine model:", error);
+        labelContainerTM.innerHTML = '<div>모델 로드 실패! my_model 폴더에 model.json, metadata.json 파일을 확인해주세요.</div>';
+    }
 }
 
-// Initial setup, load model but don't start prediction until image is uploaded
-document.addEventListener('DOMContentLoaded', loadModel);
+async function initWebcam() { // Reintroduced initWebcam
+    await loadModel(); // Ensure model is loaded
 
+    if (!model) { // If model failed to load, don't proceed
+        return;
+    }
 
-async function handleImageUpload(event) {
-    // No need to await loadModel here, as it's called on DOMContentLoaded
-    // await loadModel();
+    // Stop image processing if running
+    if(uploadedImageCanvas) {
+        uploadedImageCanvas = null;
+    }
+    uploadedImageContainer.innerHTML = '';
+    uploadedImageContainer.style.display = 'none';
 
-    // Clear previous prediction results
-    if (animationFrameId) {
+    if (webcam && webcam.webcamStarted) {
+        webcam.stop(); // Stop previous webcam if running
+    }
+    if(animationFrameId) {
         window.cancelAnimationFrame(animationFrameId);
     }
-    labelContainerTM.innerHTML = '';
+
+    const flip = true;
+    webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+    await webcam.setup(); // request access to the webcam
+    await webcam.play();
+    webcamContainer.innerHTML = ''; // Clear previous content
+    webcamContainer.appendChild(webcam.canvas);
+    webcamContainer.style.display = 'block'; // Show webcam
+    
+    resetTestBtn.style.display = 'block'; // Show reset button
+    labelContainerTM.innerHTML = ''; // Clear previous labels
+    for (let i = 0; i < maxPredictions; i++) { // and class labels
+        labelContainerTM.appendChild(document.createElement("div"));
+    }
+    window.requestAnimationFrame(loop); // Start prediction loop
+}
+
+async function handleImageUpload(event) {
+    await loadModel(); // Ensure model is loaded
+
+    if (!model) { // If model failed to load, don't proceed
+        return;
+    }
+
+    if (webcam && webcam.webcamStarted) { // Stop webcam if running
+        webcam.stop();
+    }
+    webcamContainer.innerHTML = '';
+    webcamContainer.style.display = 'none';
+
+    if(animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+    }
 
     const file = event.target.files[0];
     if (!file) return;
@@ -146,8 +192,7 @@ async function handleImageUpload(event) {
             uploadedImageContainer.style.display = 'block'; // Ensure it's visible
             resetTestBtn.style.display = 'block'; // Show reset button
             
-            // Generate labels containers for new prediction
-            labelContainerTM.innerHTML = '';
+            labelContainerTM.innerHTML = ''; // Clear previous labels
             for (let i = 0; i < maxPredictions; i++) {
                 labelContainerTM.appendChild(document.createElement("div"));
             }
@@ -159,6 +204,17 @@ async function handleImageUpload(event) {
     reader.readAsDataURL(file);
 }
 
+async function loop() { // Reintroduced loop for webcam
+    webcam.update(); // update the webcam frame
+    await predictWebcam();
+    animationFrameId = window.requestAnimationFrame(loop);
+}
+
+async function predictWebcam() { // Reintroduced predictWebcam
+    const prediction = await model.predict(webcam.canvas);
+    displayPredictions(prediction);
+}
+
 async function predictImage() {
     if (uploadedImageCanvas && model) {
         const prediction = await model.predict(uploadedImageCanvas);
@@ -167,23 +223,34 @@ async function predictImage() {
 }
 
 function displayPredictions(prediction) {
+    if (!labelContainerTM) { // Ensure labelContainerTM exists
+        console.error("label-container not found.");
+        return;
+    }
+    labelContainerTM.innerHTML = ''; // Clear previous predictions
     for (let i = 0; i < maxPredictions; i++) {
         const classPrediction =
             prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-        labelContainerTM.childNodes[i].innerHTML = classPrediction;
+        const predictionDiv = document.createElement("div");
+        predictionDiv.textContent = classPrediction;
+        labelContainerTM.appendChild(predictionDiv);
     }
 }
 
 function resetTeachableMachine() {
+    if (webcam && webcam.webcamStarted) {
+        webcam.stop();
+    }
     if (animationFrameId) {
         window.cancelAnimationFrame(animationFrameId);
     }
+    webcamContainer.innerHTML = '';
+    webcamContainer.style.display = 'none'; // Hide webcam
     uploadedImageContainer.innerHTML = '';
-    uploadedImageContainer.style.display = 'none'; // Hide image container
+    uploadedImageContainer.style.display = 'none'; // Hide image
     labelContainerTM.innerHTML = '';
     resetTestBtn.style.display = 'none';
     uploadedImageCanvas = null;
-    // Re-enable file input for new selection
     if (uploadImageInput) {
         uploadImageInput.value = ''; // Clear selected file
     }
@@ -191,6 +258,7 @@ function resetTeachableMachine() {
 }
 
 // Event Listeners for Teachable Machine buttons
+if (startWebcamBtn) startWebcamBtn.addEventListener('click', initWebcam); // startWebcamBtn listener reintroduced
 if (uploadImageBtn) uploadImageBtn.addEventListener('click', () => uploadImageInput.click());
 if (uploadImageInput) uploadImageInput.addEventListener('change', handleImageUpload);
 if (resetTestBtn) resetTestBtn.addEventListener('click', resetTeachableMachine);
