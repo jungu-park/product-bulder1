@@ -28,10 +28,12 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
     *   `resetTeachableMachine()` function adjusted to properly handle both webcam and image states.
     *   Added `try-catch` block to `loadModel()` for better error reporting if model files are missing.
     *   Improved clarity and robustness of element IDs (e.g., `labelContainerTM`).
+    *   **Prediction results now display as percentages** (`(probability * 100).toFixed(0) + '%'`).
 3.  **Refactor `style.css`**:
     *   **Shrunk Disqus comment section:** Reduced `max-width` of `.disqus-container` to `400px`.
     *   **Pastel background:** Updated `--background-color` variables for both light and dark themes to pastel shades. Also applied pastel colors to Lotto numbers.
     *   Ensured styles are compatible with both webcam and image upload containers.
+    *   **Added background color to prediction result divs** (`#label-container div`) using `var(--button-bg-color)` and `color: white;`.
     *   Ensured all styles are compatible with dark/light themes.
 4.  **Removed `my_model` directory**: The local `my_model` directory has been deleted as it is no longer needed.
 5.  **Commit and Push**: Stage and commit all changes, then push to the remote repository.

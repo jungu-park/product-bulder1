@@ -315,8 +315,8 @@ button:hover {
     padding: 5px;
     border: 1px solid var(--text-color);
     border-radius: 5px;
-    background-color: var(--container-bg-color);
-    color: var(--text-color);
+    background-color: var(--button-bg-color); /* Use button bg color */
+    color: white; /* Ensure text is readable */
 }
 
 /* Disqus Specific Styles */
