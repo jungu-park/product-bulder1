@@ -34,9 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         document.getElementById(sectionId).classList.add('active');
 
-        // Reset Teachable Machine when switching away
+        // Reset Teachable Machine when switching away or on initial load
         if (sectionId !== 'animal-test') {
             resetTeachableMachine();
+        } else {
+            // If navigating to animal-test, ensure model is loaded
+            loadModel();
+            // And ensure previous image/predictions are cleared if any
+            resetTeachableMachine(); // To ensure clean state
         }
     }
 
@@ -53,6 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         navButtons[0].classList.add('active');
         showSection(navButtons[0].dataset.section);
     }
+
+    // Call loadModel early and reset TM section
+    loadModel();
+    resetTeachableMachine();
 });
 
 

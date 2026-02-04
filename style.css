@@ -1,26 +1,26 @@
 :root {
-    --background-color: #f0f0f0;
+    --background-color: #f0f4f8; /* Light pastel blue-gray */
     --text-color: #333;
-    --container-bg-color: #f9f9f9;
-    --button-bg-color: #4CAF50;
-    --button-hover-bg-color: #45a049;
+    --container-bg-color: #ffffff; /* White containers for light theme */
+    --button-bg-color: #81c784; /* Light green */
+    --button-hover-bg-color: #66bb6a;
     --nav-button-bg: #e0e0e0;
     --nav-button-text: #333;
-    --nav-button-hover-bg: #ccc;
-    --nav-button-active-bg: #4CAF50;
+    --nav-button-hover-bg: #d0d0d0;
+    --nav-button-active-bg: #81c784;
     --nav-button-active-text: white;
 }
 
 [data-theme="dark"] {
-    --background-color: #333;
-    --text-color: #f0f0f0;
-    --container-bg-color: #444;
-    --button-bg-color: #007bff;
-    --button-hover-bg-color: #0056b3;
-    --nav-button-bg: #555;
-    --nav-button-text: #f0f0f0;
-    --nav-button-hover-bg: #777;
-    --nav-button-active-bg: #007bff;
+    --background-color: #455a64; /* Darker pastel blue-gray */
+    --text-color: #e0e0e0;
+    --container-bg-color: #37474f; /* Dark containers for dark theme */
+    --button-bg-color: #64b5f6; /* Light blue */
+    --button-hover-bg-color: #42a5f5;
+    --nav-button-bg: #5a707a;
+    --nav-button-text: #e0e0e0;
+    --nav-button-hover-bg: #6f8691;
+    --nav-button-active-bg: #64b5f6;
     --nav-button-active-text: white;
 }
 
@@ -202,12 +202,12 @@ button:hover {
 }
 
 /* Individual colors for each lotto number */
-#lotto .number:nth-child(1) { background-color: #FF6347; } /* Tomato */
-#lotto .number:nth-child(2) { background-color: #4682B4; } /* SteelBlue */
-#lotto .number:nth-child(3) { background-color: #32CD32; } /* LimeGreen */
-#lotto .number:nth-child(4) { background-color: #FFD700; color: #333;} /* Gold */
-#lotto .number:nth-child(5) { background-color: #9370DB; } /* MediumPurple */
-#lotto .number:nth-child(6) { background-color: #FF4500; } /* OrangeRed */
+#lotto .number:nth-child(1) { background-color: #FFB3BA; } /* Pastel Red */
+#lotto .number:nth-child(2) { background-color: #BAE1FF; } /* Pastel Blue */
+#lotto .number:nth-child(3) { background-color: #BAFFC9; } /* Pastel Green */
+#lotto .number:nth-child(4) { background-color: #FFFFBA; color: #333;} /* Pastel Yellow */
+#lotto .number:nth-child(5) { background-color: #FFDFBA; } /* Pastel Orange */
+#lotto .number:nth-child(6) { background-color: #E0BBE4; } /* Pastel Purple */
 
 
 /* Form Specific Styles */
@@ -327,6 +327,6 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
+    max-width: 400px; /* Reduced width for comment section */
     box-sizing: border-box;
 }

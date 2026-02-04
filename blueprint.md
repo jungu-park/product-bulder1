@@ -1,4 +1,4 @@
-# Multi-App Platform (Lotto, Inquiry, Animal Look-alike Test, Disqus)
+# Multi-App Platform (Lotto, Inquiry, 동물상, Disqus)
 
 ## Overview
 
@@ -13,26 +13,25 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
 
 ## Current Plan
 
-1.  **Refactor `index.html`**:
-    *   Implemented a multi-section layout with navigation buttons (`nav-button`).
-    *   Restored Lotto Number Generator, Formspree Inquiry Form, and Disqus Comment Section into their respective `div.app-section` containers.
+1.  **Modify `index.html`**:
     *   Updated the "Animal Face Test" section:
-        *   Title changed to "말과 닮은꼴".
-        *   Removed webcam-related HTML elements.
-        *   Simplified `test-options` to focus solely on image upload.
+        *   Title changed from "말과 닮은꼴" to "동물상".
+        *   Removed `style="display: none;"` from the `uploaded-image-container` div to allow JavaScript to control its visibility.
+    *   Confirmed restoration of Lotto Number Generator, Formspree Inquiry Form, and Disqus Comment Section.
 2.  **Refactor `main.js`**:
-    *   Implemented JavaScript for section navigation (show/hide `app-section` based on button clicks).
-    *   Restored all previous JavaScript logic for Lotto Number Generator and theme switching.
-    *   Refactored Teachable Machine integration to support:
-        *   Loading the model once.
-        *   **Removed all webcam-related functions and logic.**
-        *   Focuses solely on handling image file uploads, drawing to canvas, and predicting from it.
-        *   A reset mechanism for the Teachable Machine test.
+    *   **Removed all webcam-related functions and logic.**
+    *   Teachable Machine functionality now relies solely on image file uploads.
+    *   `loadModel()` is called on `DOMContentLoaded` to ensure the model is loaded early.
+    *   `resetTeachableMachine()` function adjusted to match image-only mode.
+    *   **Debugging Improvement:** Added `loadModel()` and `resetTeachableMachine()` calls at the end of the main `DOMContentLoaded` listener to ensure the model is loaded and the TM section is properly initialized/reset on page load and section switches.
 3.  **Refactor `style.css`**:
-    *   Added styles for the new navigation (`.main-nav`, `.nav-button`).
-    *   Updated `.app-section` styling for proper display/hiding.
-    *   Restored and adjusted styles for Lotto numbers (`#numbers`, `.number`), Inquiry form (`.form-container` inputs/buttons), and Disqus (`.disqus-container`).
-    *   Updated styles for Teachable Machine elements (`.test-options`, `#uploaded-image-container`, `#label-container`), removing webcam-specific styles.
+    *   **Shrunk Disqus comment section:** Reduced `max-width` of `.disqus-container` to `400px`.
+    *   **Pastel background:** Updated `--background-color` variables for both light and dark themes to pastel shades. Also applied pastel colors to Lotto numbers.
+    *   Removed any leftover webcam-specific styling.
     *   Ensured all styles are compatible with dark/light themes.
 4.  **`my_model` directory**: Confirmed existence of `my_model` directory. **User must place their `model.json` and `metadata.json` files inside this directory for the Teachable Machine feature to work.**
 5.  **Commit and Push**: Stage and commit all changes, then push to the remote repository.
+
+## Important Note on Teachable Machine Functionality:
+
+The "동물상" (Animal Face Test) feature requires model files (`model.json` and `metadata.json`) to be present in the `./my_model/` directory. If the feature is not working, please ensure these files are correctly placed. Additionally, check the browser's developer console for any JavaScript errors, especially those related to `tmImage.load` or `model.predict`.
