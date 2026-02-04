@@ -88,7 +88,7 @@ if (generateBtn) {
 
 
 // --- Teachable Machine Logic (Webcam and Image Upload) ---
-const URL = "./my_model/"; // User needs to ensure this path is correct and files exist
+const URL = "https://teachablemachine.withgoogle.com/models/guvsM29DK/"; // User needs to ensure this path is correct and files exist
 
 let model, webcam, labelContainer, maxPredictions; // labelContainer here as per snippet
 let uploadedImageCanvas = null;

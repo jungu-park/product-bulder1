@@ -9,7 +9,7 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
 *   **`index.html`**: The main HTML file, structured with distinct sections for each application and a navigation system to switch between them. Includes necessary library imports for Teachable Machine and Disqus.
 *   **`style.css`**: The CSS file for styling all application sections, navigation, and maintaining a responsive design with dark/light theme support.
 *   **`main.js`**: The JavaScript file containing logic for theme switching, section navigation, lotto number generation, and the refactored Teachable Machine integration (**supporting both webcam and image upload** with prediction logic).
-*   **`my_model/`**: This directory contains the `model.json` and `metadata.json` files for the Teachable Machine model. **(User needs to provide these files).**
+*   **Teachable Machine Model**: Now loaded directly from a hosted URL (`https://teachablemachine.withgoogle.com/models/guvsM29DK/`). The local `my_model/` directory is no longer needed.
 
 ## Current Plan
 
@@ -21,6 +21,7 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
         *   `uploaded-image-container` is initially hidden (controlled by JS).
     *   Confirmed restoration of Lotto Number Generator, Formspree Inquiry Form, and Disqus Comment Section.
 2.  **Refactor `main.js`**:
+    *   **Teachable Machine Model URL updated to online hosted model:** `https://teachablemachine.withgoogle.com/models/guvsM29DK/`.
     *   **Reintroduced all webcam-related functions and logic (`webcam`, `initWebcam`, `loop`, `predictWebcam`).**
     *   Teachable Machine functionality now supports **both image file uploads and webcam input**.
     *   `loadModel()` is called on `DOMContentLoaded` to ensure the model is loaded early.
@@ -32,9 +33,9 @@ A single-page web application featuring multiple interactive tools: a Lotto Numb
     *   **Pastel background:** Updated `--background-color` variables for both light and dark themes to pastel shades. Also applied pastel colors to Lotto numbers.
     *   Ensured styles are compatible with both webcam and image upload containers.
     *   Ensured all styles are compatible with dark/light themes.
-4.  **`my_model` directory**: Confirmed existence of `my_model` directory. **User must place their `model.json` and `metadata.json` files inside this directory for the Teachable Machine feature to work.**
+4.  **Removed `my_model` directory**: The local `my_model` directory has been deleted as it is no longer needed.
 5.  **Commit and Push**: Stage and commit all changes, then push to the remote repository.
 
 ## Important Note on Teachable Machine Functionality:
 
-The "동물상" (Animal Face Test) feature requires model files (`model.json` and `metadata.json`) to be present in the `./my_model/` directory. If the feature is not working, please ensure these files are correctly placed. Additionally, check the browser's developer console for any JavaScript errors, especially those related to `tmImage.load` or `model.predict`.
+The "동물상" (Animal Face Test) feature now loads its model directly from `https://teachablemachine.withgoogle.com/models/guvsM29DK/`. This eliminates the need for local model files. If the feature is not working, please check the browser's developer console for any JavaScript errors, especially those related to `tmImage.load` or `model.predict`, which might indicate network issues or problems with the hosted model itself.
