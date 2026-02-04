@@ -52,11 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Show default section on load (e.g., lotto)
-    if (navButtons.length > 0) {
-        navButtons[0].classList.add('active');
-        showSection(navButtons[0].dataset.section);
+    // Show default section on load (now 'intro')
+    // Find the 'intro' button and activate it
+    const introButton = document.querySelector('.nav-button[data-section="intro"]');
+    if (introButton) {
+        introButton.classList.add('active');
+        showSection('intro');
     }
+
 
     // Call loadModel early and reset TM section
     loadModel();
