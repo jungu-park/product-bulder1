@@ -1,59 +1,48 @@
-# Multi-App Platform (AdSense Improvement Project)
+# Multi-App Platform (AdSense Improvement Project & Feature Updates)
 
 ## Overview
 
-This project is undergoing a significant overhaul to address a Google AdSense rejection. The primary goal is to improve site quality, content value, and user experience to meet AdSense program policies. The "animal look-alike test" feature is being removed, and a more robust "Country-Specific Lottery Number Generator" is being added. The site structure will also be improved with a proper navigation bar and essential static pages.
+This project is undergoing a significant overhaul to address Google AdSense rejection and to implement new user-requested features. The "animal look-alike test" feature has been removed, and a more robust "Country-Specific Lottery Number Generator" is being implemented. The site structure has been improved with a proper navigation bar and essential static pages.
 
 ## Project Outline
 
-*   **`index.html`**: The main HTML file. It will be restructured to include a new header with clear navigation, a new lottery section, and placeholder sections for "About Us" and "Contact Us". The old "animal-test" and Disqus sections will be removed.
+*   **`index.html`**: The main HTML file. It has been restructured to include a new header with clear navigation, and placeholder sections for "About Us" and "Contact Us". The old "animal-test" and Disqus sections were removed.
 *   **`about.html`**: A new page with placeholder "About Us" content.
-*   **`contact.html`**: A new page with placeholder "Contact Us" content, potentially linking to the existing inquiry form.
-*   **`style.css`**: The stylesheet will be updated to remove styles related to the old features and add styles for the new navigation, lottery section, and other improvements.
-*   **`main.js`**: The JavaScript file will be cleaned up to remove the Teachable Machine logic. New JavaScript will be added for the interactive, multi-country lottery number generator.
-*   **`privacy.html`**: The existing privacy policy page will be kept and linked from the new navigation.
-*   **`ads.txt`**: Will be reviewed to ensure it's correct.
-*   **`robots.txt`**: Will be reviewed.
+*   **`contact.html`**: A new page with placeholder "Contact Us" content, linking to the existing inquiry form.
+*   **`style.css`**: The stylesheet has been updated to remove styles related to old features and add styles for the new navigation, lottery section, and other improvements.
+*   **`main.js`**: The JavaScript file has been cleaned up to remove the Teachable Machine logic. New JavaScript has been added for the interactive, multi-country lottery number generator.
+*   **`privacy.html`**: The existing privacy policy page is kept and linked from the new navigation.
+*   **`ads.txt`**: Reviewed and confirmed correct.
+*   **`robots.txt`**: Reviewed and confirmed correct.
 
-## Current Plan: AdSense Remediation
+## Current Plan: Feature Updates & Refinements
 
-1.  **Analyze AdSense Policies (Completed):** Reviewed AdSense help documents. The key is to provide unique, valuable content and a good user experience, and have a clear site structure with essential pages (`About`, `Contact`, `Privacy`).
+1.  **Remove Redundant Partnership Inquiry from Home (Completed):**
+    *   **Task:** Delete the "제휴 문의" (Partnership Inquiry) section from `index.html` as it duplicates the "문의" (Contact) page.
+    *   **Actions:** Removed the `<div id="inquiry" class="app-section">` block and its content from `index.html`.
 
-2.  **Update `blueprint.md` (Completed):** The blueprint is updated to reflect the new direction of the project.
-
-3.  **Remove Low-Value Feature:**
-    *   **Task:** Eliminate the "동물상 테스트" (Animal Look-alike Test) feature.
+2.  **Move Lottery Generator to a dedicated "Number Recommendation" Section (Completed):**
+    *   **Task:** Repurpose the existing `#lotto` section to be more focused on "번호추천" (Number Recommendation) and prepare for a new 'Lotto Machine Effect' on the home page.
     *   **Actions:**
-        *   Remove the `#animal-test` section from `index.html`.
-        *   Remove the corresponding navigation button from `index.html`.
-        *   Delete all Teachable Machine related JavaScript (`loadModel`, `initWebcam`, `predict`, etc.) from `main.js`.
-        *   Remove all associated CSS from `style.css`.
-        *   Remove the `script` tags for `tf.js` and `teachablemachine-image` from `index.html`.
+        *   Changed the `id` of the current lottery section from `lotto` to `number-recommendation` in `index.html`.
+        *   Updated navigation links in `index.html`, `about.html`, and `contact.html` to point to `index.html#number-recommendation` for the lottery feature.
+        *   Updated `main.js` to reference the new ID `number-recommendation`.
+        *   Updated related CSS selectors from `#lotto` to `#number-recommendation`.
 
-4.  **Enhance Content with a High-Quality Feature:**
-    *   **Task:** Create a "Country-Specific Lottery Number Generator".
+3.  **Add "Lottery Machine Effect" to Home Page (Completed):**
+    *   **Task:** Introduce a visually engaging "로또 추첨기계" (Lottery Drawing Machine) effect on the `index.html` home section.
     *   **Actions:**
-        *   Design a new UI in `index.html` allowing users to select a country/lottery (e.g., USA Powerball, EuroMillions, Korea Lotto 6/45).
-        *   Implement the logic in `main.js` to generate numbers based on the rules of the selected lottery (e.g., different number ranges, bonus numbers).
-        *   Add information about each lottery, such as draw days or a link to the official site, to increase content value.
-        *   Style the new section in `style.css`.
+        *   Added a new `div` in `index.html` within the home/intro section (`<div id="intro">`) to house the lottery machine effect.
+        *   Integrated an image or GIF representing a lottery machine in action.
+        *   Added basic styling in `style.css` for this new element.
 
-5.  **Improve Site Structure and Navigation:**
-    *   **Task:** Replace the button-based navigation with a more traditional header/navigation bar.
+4.  **Implement Language Selection Banner (Korean/English) (Completed):**
+    *   **Task:** Provide a user interface element to switch the site's language between Korean and English.
     *   **Actions:**
-        *   Create a `<header>` element in `index.html`.
-        *   Add navigation links for "Home", "Lottery", "About", "Contact", and "Privacy Policy".
-        *   Style the new header and navigation in `style.css`.
-    *   **Task:** Add essential static pages.
-    *   **Actions:**
-        *   Create `about.html` and `contact.html` with placeholder text. Users will be advised to fill these in.
+        *   Added a new language selection dropdown/buttons in the header of `index.html`, `about.html`, and `contact.html`.
+        *   Implemented basic JavaScript logic in `main.js` to store the selected language in `localStorage` and update the `lang` attribute.
+        *   Added styling for the language selector in `style.css`.
 
-6.  **General Cleanup and Quality Improvements:**
-    *   **Task:** Remove the Disqus comment section.
-    *   **Actions:** Remove the `disqus_thread` div and the associated scripts from `index.html` and styles from `style.css`.
-    *   **Task:** Review and ensure `ads.txt` and `robots.txt` are correct.
-    *   **Task:** Ensure the overall design is clean, professional, and mobile-responsive.
+## Final Steps
 
-## Phase 2: Implementation
-
-The next steps involve acting on this plan by modifying the project files. I will start by modifying `index.html` to remove the old feature and add the new structure.
+All requested modifications have been implemented. The site should now have a better structure, improved content focus, and new features as per the user's request. I will now inform the user that the task is complete.
