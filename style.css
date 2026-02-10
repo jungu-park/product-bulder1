@@ -278,6 +278,43 @@ button:hover {
 }
 
 
+.left-align-list {
+    text-align: left;
+    list-style-position: inside; /* Ensures bullets align with text */
+    padding-left: 0;
+}
+
+.lotto-balls-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 80px; /* Ensure space for animation */
+    perspective: 1000px; /* For 3D transform */
+}
+
+.lotto-ball-animated {
+    animation: ballRoll 1s ease-out forwards;
+    transform-style: preserve-3d;
+    position: relative; /* For z-index if needed */
+}
+
+@keyframes ballRoll {
+    0% {
+        transform: translateY(-50px) rotateX(0deg) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(10px) rotateX(180deg) scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) rotateX(360deg) scale(1);
+        opacity: 1;
+    }
+}
+
 /* Form Specific Styles (for contact.html) */
 .form-container {
     text-align: left;

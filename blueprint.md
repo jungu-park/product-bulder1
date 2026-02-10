@@ -2,46 +2,46 @@
 
 ## Overview
 
-This project is undergoing a significant overhaul to address Google AdSense rejection and to implement new user-requested features. The "animal look-alike test" feature has been removed, and a more robust "Country-Specific Lottery Number Generator" is being implemented. The site structure has been improved with a proper navigation bar and essential static pages.
+This project is undergoing a significant overhaul to address Google AdSense rejection and to implement new user-requested features. The "animal look-alike test" feature has been removed. The site structure has been improved with a proper navigation bar and essential static pages. This update focuses on enhancing the lottery number generation experience, implementing full internationalization, and refining the homepage layout.
 
 ## Project Outline
 
-*   **`index.html`**: The main HTML file. It has been restructured to include a new header with clear navigation, and placeholder sections for "About Us" and "Contact Us". The old "animal-test" and Disqus sections were removed.
-*   **`about.html`**: A new page with placeholder "About Us" content.
-*   **`contact.html`**: A new page with placeholder "Contact Us" content, linking to the existing inquiry form.
-*   **`style.css`**: The stylesheet has been updated to remove styles related to old features and add styles for the new navigation, lottery section, and other improvements.
-*   **`main.js`**: The JavaScript file has been cleaned up to remove the Teachable Machine logic. New JavaScript has been added for the interactive, multi-country lottery number generator.
-*   **`privacy.html`**: The existing privacy policy page is kept and linked from the new navigation.
+*   **`index.html`**: The main HTML file. Will be restructured to swap the Home and Lotto Number Recommendation section contents. Will include the lottery machine effect within the Lotto Number Recommendation section. Will be updated with `data-i18n` attributes for internationalization.
+*   **`about.html`**: Placeholder "About Us" content. Will be updated with `data-i18n` attributes for internationalization.
+*   **`contact.html`**: Placeholder "Contact Us" content. Will be updated with `data-i18n` attributes for internationalization.
+*   **`style.css`**: The stylesheet will be updated to refine layout, align text, and add styles for the lottery ball animation and ensure responsiveness.
+*   **`main.js`**: The JavaScript file will be updated to manage the swapped sections, implement the lottery ball animation, and provide full internationalization logic.
+*   **`privacy.html`**: The existing privacy policy page. Will be updated with `data-i18n` attributes for internationalization. (Content will need to be translated by the user).
 *   **`ads.txt`**: Reviewed and confirmed correct.
 *   **`robots.txt`**: Reviewed and confirmed correct.
 
-## Current Plan: Feature Updates & Refinements
+## Current Plan: Advanced Feature Updates & Refinements
 
-1.  **Remove Redundant Partnership Inquiry from Home (Completed):**
-    *   **Task:** Delete the "제휴 문의" (Partnership Inquiry) section from `index.html` as it duplicates the "문의" (Contact) page.
-    *   **Actions:** Removed the `<div id="inquiry" class="app-section">` block and its content from `index.html`.
-
-2.  **Move Lottery Generator to a dedicated "Number Recommendation" Section (Completed):**
-    *   **Task:** Repurpose the existing `#lotto` section to be more focused on "번호추천" (Number Recommendation) and prepare for a new 'Lotto Machine Effect' on the home page.
+1.  **Swap Home and Lotto Number Recommendation Sections (Completed):**
+    *   **Task:** Exchange the entire content blocks of the current `#intro` (Home) section and the `#number-recommendation` (Lotto Number Recommendation) section in `index.html`. The "Lotto Machine Effect" and "Key Features" list will now reside in the Home section, while the lottery number generation controls will be in the Lotto Number Recommendation section.
     *   **Actions:**
-        *   Changed the `id` of the current lottery section from `lotto` to `number-recommendation` in `index.html`.
-        *   Updated navigation links in `index.html`, `about.html`, and `contact.html` to point to `index.html#number-recommendation` for the lottery feature.
-        *   Updated `main.js` to reference the new ID `number-recommendation`.
-        *   Updated related CSS selectors from `#lotto` to `#number-recommendation`.
-
-3.  **Add "Lottery Machine Effect" to Home Page (Completed):**
-    *   **Task:** Introduce a visually engaging "로또 추첨기계" (Lottery Drawing Machine) effect on the `index.html` home section.
+        *   Modified `index.html` to move content.
+        *   Adjusted navigation links in `index.html`, `about.html`, and `contact.html` to point to the correct new sections.
+2.  **Remove "홈" (Home) Heading above Image Effect (Completed):**
+    *   **Task:** Delete the `<h2>홈</h2>` tag that is currently above the lottery machine effect in the `index.html` (now in the Lotto Number Recommendation section).
+    *   **Actions:** Modified `index.html`.
+3.  **Align "주요 기능" (Key Features) Text to Left (Completed):**
+    *   **Task:** Change the alignment of the `<ul>` element containing "주요 기능" (Key Features) to left.
+    *   **Actions:** Modified `style.css` to add a specific style for this `<ul>`.
+4.  **Implement Lottery Ball Animation within Machine Effect (Completed):**
+    *   **Task:** Enhance the "로또 추첨기계" visual to make the generated numbers appear as if they are continuously rotating inside the machine.
     *   **Actions:**
-        *   Added a new `div` in `index.html` within the home/intro section (`<div id="intro">`) to house the lottery machine effect.
-        *   Integrated an image or GIF representing a lottery machine in action.
-        *   Added basic styling in `style.css` for this new element.
-
-4.  **Implement Language Selection Banner (Korean/English) (Completed):**
-    *   **Task:** Provide a user interface element to switch the site's language between Korean and English.
+        *   Modified `index.html` to define a container for the animated balls within the `#number-recommendation` section.
+        *   Modified `style.css` to define CSS keyframe animations for rotation and movement of the balls.
+        *   Modified `main.js` to dynamically create, style, and animate the generated number balls within this container.
+5.  **Implement Full Internationalization (i18n) (Completed):**
+    *   **Task:** Provide a comprehensive language switching functionality for all static and dynamic text content.
     *   **Actions:**
-        *   Added a new language selection dropdown/buttons in the header of `index.html`, `about.html`, and `contact.html`.
-        *   Implemented basic JavaScript logic in `main.js` to store the selected language in `localStorage` and update the `lang` attribute.
-        *   Added styling for the language selector in `style.css`.
+        *   Created a `translations` object in `main.js` containing Korean ('ko') and English ('en') versions of all translatable text strings.
+        *   Modified `main.js` to implement a `translatePage()` function that updates `textContent`, `placeholder`, and other relevant attributes of elements based on `data-i18n` attributes or specific IDs.
+        *   Updated `index.html`, `about.html`, `contact.html`, and `privacy.html` to add `data-i18n` attributes to all elements that require translation.
+        *   Updated the `lottoDetails` object in `main.js` to use the `translations` object for the `info` property.
+        *   Ensured initial page load displays content in the `currentLang` from `localStorage`.
 
 ## Final Steps
 
