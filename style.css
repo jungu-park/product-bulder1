@@ -1,257 +1,70 @@
+/* Custom Theme Overrides for Pico.css */
 :root {
-    --background-color: #f0f4f8;
-    --text-color: #333;
-    --container-bg-color: #ffffff;
-    --button-bg-color: #81c784;
-    --button-hover-bg-color: #66bb6a;
-    --header-bg-color: #ffffff;
-    --header-text-color: #333;
-    --header-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --background-color: #f3f5f7; /* Lighter gray background */
 }
 
 [data-theme="dark"] {
-    --background-color: #455a64;
-    --text-color: #e0e0e0;
-    --container-bg-color: #37474f;
-    --button-bg-color: #64b5f6;
-    --button-hover-bg-color: #42a5f5;
-    --header-bg-color: #37474f;
-    --header-text-color: #e0e0e0;
-    --header-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    --background-color: #1f2937; /* Darker blue-gray background */
 }
 
+/* Custom Body Background */
 body {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
     background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-    padding-top: 80px; /* Make space for the fixed header */
-    box-sizing: border-box;
+}
+
+/* Custom Header/Nav styling to work with Pico */
+header.container {
+    padding: 1rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+nav ul {
     margin: 0;
 }
 
-/* Header and Navigation */
-.main-header {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    background-color: var(--header-bg-color);
-    color: var(--header-text-color);
-    box-shadow: var(--header-box-shadow);
-    z-index: 1000;
-    height: 70px;
-    box-sizing: border-box;
+.lang-selector-summary {
+    text-align: right; /* Align lang selector text */
+    padding: 0.5rem 0;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+/* Main content sections */
+main.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-.main-nav {
-    display: flex;
-    gap: 20px;
-    flex-grow: 1; /* Allows nav to take available space */
-    justify-content: center;
-}
-
-.main-nav a {
-    color: var(--header-text-color);
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.main-nav a:hover {
-    background-color: var(--button-hover-bg-color);
-}
-
-/* Language Selector */
-.lang-selector {
-    display: flex;
-    gap: 5px;
-    margin-left: 10px; /* Space between nav and lang selector */
-}
-
-.lang-button {
-    padding: 5px 10px;
-    border: 1px solid var(--header-text-color);
-    border-radius: 5px;
-    background-color: transparent;
-    color: var(--header-text-color);
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.lang-button:hover {
-    background-color: var(--button-hover-bg-color);
-    color: white;
-}
-
-.lang-button.active {
-    background-color: var(--button-bg-color);
-    color: white;
-    border-color: var(--button-bg-color);
-}
-
-
-/* Theme Switch Styles */
-.theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-    margin-left: 10px; /* Space between lang selector and theme switch */
-}
-
-.theme-switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
-}
-
-.theme-switch input {
-    display: none;
-}
-
-.slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-}
-
-.slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
-}
-
-input:checked + .slider {
-    background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-
-/* App Sections */
-.app-section {
-    width: 100%;
-    max-width: 800px; /* Increased max-width for better layout */
-    margin-bottom: 40px;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
-.container {
-    text-align: center;
-    background-color: var(--container-bg-color);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    box-sizing: border-box;
+section {
+    padding: 2rem 0;
 }
 
 h1, h2 {
-    color: var(--text-color);
-    margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Common button styling */
-button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    background-color: var(--button-bg-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: var(--button-hover-bg-color);
-}
-
-/* Lotto Machine Effect */
-.lotto-machine-effect {
-    margin: 30px auto;
-    max-width: 500px;
-}
-
-.lotto-gif {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-/* Lotto Number Recommendation Specific Styles */
-.lotto-controls {
-    display: flex;
-    justify-content: center;
+/* Lotto Generator Specific Styles */
+.lotto-controls .grid {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
-}
-
-#lotto-type {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid var(--text-color);
-    background-color: var(--container-bg-color);
-    color: var(--text-color);
-    font-size: 1rem;
 }
 
 #lotto-info {
-    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 1rem;
     font-style: italic;
     min-height: 2em; /* Ensure some space even if info is empty */
 }
 
-#numbers {
-    margin-top: 20px;
-    font-size: 2rem;
-    font-weight: bold;
+/* Lotto Balls Container & Animation */
+.lotto-balls-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 1rem;
+    min-height: 80px; /* Ensure space for animation */
+    perspective: 1000px; /* For 3D transform */
+    padding: 2rem 0;
 }
 
 .number {
@@ -262,42 +75,27 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
     flex-shrink: 0;
-    background-color: #BAE1FF; /* Default Pastel Blue */
+    background: linear-gradient(135deg, #81c784, #4caf50); /* Green gradient */
+    border: 2px solid white;
 }
 
 .number.powerball {
-    background-color: #FFB3BA; /* Pastel Red */
+    background: linear-gradient(135deg, #f06292, #e91e63); /* Pink gradient */
 }
 
 .number.lucky-star {
-    background-color: #FFFFBA; /* Pastel Yellow */
+    background: linear-gradient(135deg, #ffd54f, #ffc107); /* Yellow gradient */
     color: #333;
-}
-
-
-.left-align-list {
-    text-align: left;
-    list-style-position: inside; /* Ensures bullets align with text */
-    padding-left: 0;
-}
-
-.lotto-balls-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    min-height: 80px; /* Ensure space for animation */
-    perspective: 1000px; /* For 3D transform */
 }
 
 .lotto-ball-animated {
     animation: ballRoll 1s ease-out forwards;
     transform-style: preserve-3d;
-    position: relative; /* For z-index if needed */
 }
 
 @keyframes ballRoll {
@@ -315,78 +113,23 @@ button:hover {
     }
 }
 
-/* Form Specific Styles (for contact.html) */
-.form-container {
-    text-align: left;
-}
-
-.form-container h2 {
+/* Statistics Section */
+.stat-numbers span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border);
+    margin: 5px;
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.form-container form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-container label {
-    margin-bottom: 5px;
     font-weight: bold;
 }
 
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container textarea {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    background-color: var(--container-bg-color);
-    color: var(--text-color);
-    font-size: 1rem;
-}
-
-.form-container input[type="text"]:focus,
-.form-container input[type="email"]:focus,
-.form-container textarea:focus {
-    border-color: var(--button-bg-color);
-    outline: none;
-}
-
-.form-container button[type="submit"] {
-    background-color: var(--button-bg-color);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1rem;
-}
-
-.form-container button[type="submit"]:hover {
-    background-color: var(--button-hover-bg-color);
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .main-header {
-        flex-direction: column;
-        height: auto;
-        padding: 10px 20px;
-    }
-    .main-nav {
-        margin-top: 10px;
-        flex-wrap: wrap;
-    }
-    .lang-selector, .theme-switch-wrapper {
-        margin-top: 10px;
-        margin-left: 0;
-    }
-    body {
-        padding-top: 150px; /* Adjust for larger header on small screens */
-    }
-    .lotto-controls {
-        flex-direction: column;
-    }
+/* Footer styling */
+footer.container {
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid var(--card-border);
 }

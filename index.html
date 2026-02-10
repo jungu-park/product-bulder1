@@ -1,42 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-App Platform</title>
+    <title data-i18n="pageTitle">LottoLuck - 행운의 로또 번호 생성기</title>
     <meta name="description" content="A multi-functional web application featuring a Lotto Number Generator, partnership inquiry form, animal look-alike test using AI, and a comment section.">
     <meta name="keywords" content="lotto, lottery, inquiry form, animal test, teachable machine, disqus, web app, multi-app, Google AdSense">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/sal.js/dist/sal.css">
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6892417081710938"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-6892417081710938">
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo" data-i18n="lottoLuck">LottoLuck</div>
-        <nav class="main-nav">
-            <a href="index.html" data-i18n="home">홈</a>
-
-            <a href="about.html" data-i18n="about">소개</a>
-            <a href="contact.html" data-i18n="contact">문의</a>
-            <a href="privacy.html" data-i18n="privacyPolicy">개인정보처리방침</a>
+    <header class="container">
+        <nav>
+            <ul>
+                <li><strong data-i18n="lottoLuck">LottoLuck</strong></li>
+            </ul>
+            <ul>
+                <li><a href="index.html" data-i18n="home">홈</a></li>
+                <li><a href="blog.html" data-i18n="blog">블로그</a></li>
+                <li><a href="about.html" data-i18n="about">소개</a></li>
+                <li><a href="contact.html" data-i18n="contact">문의</a></li>
+                <li><a href="privacy.html" data-i18n="privacyPolicy">개인정보처리방침</a></li>
+                <li>
+                    <details role="list" dir="rtl">
+                        <summary aria-haspopup="listbox" role="link" class="lang-selector-summary">
+                            <span id="active-lang">한국어</span>
+                        </summary>
+                        <ul role="listbox">
+                            <li><a href="#" id="lang-ko" data-lang="ko">한국어</a></li>
+                            <li><a href="#" id="lang-en" data-lang="en">English</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
         </nav>
-        <div class="lang-selector">
-            <button id="lang-ko" class="lang-button active" data-lang="ko">한국어</button>
-            <button id="lang-en" class="lang-button" data-lang="en">English</button>
-        </div>
-        <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"></div>
-            </label>
-        </div>
     </header>
 
-    <div id="intro" class="app-section active">
-        <div class="container" id="home-container">
+    <main class="container">
+        <section id="lotto-generator">
             <h1 data-i18n="countrySpecificLottoNumberRecommendation">국가별 로또 번호 추천</h1>
-            <div class="lotto-controls">
+            <p data-i18n="lottoGeneratorSubtitle">아래에서 로또 종류를 선택하고 행운의 번호를 받아보세요!</p>
+            
+            <div class="grid">
                 <select id="lotto-type">
                     <option value="korea-lotto" data-i18n="koreaLotto">한국 로또 6/45</option>
                     <option value="us-powerball" data-i18n="usPowerball">미국 파워볼</option>
@@ -44,15 +53,62 @@
                 </select>
                 <button id="generate" data-i18n="generateNumbers">번호 생성</button>
             </div>
+
             <div id="lotto-info"></div>
             <div id="numbers" class="lotto-balls-container">
                 <!-- Lotto balls will be animated here -->
             </div>
-        </div>
-    </div>
+        </section>
 
+        <section id="how-to-play">
+            <h2 data-i18n="howToPlayTitle">게임 방법</h2>
+            <div class="grid">
+                <article data-sal="slide-up">
+                    <h3 data-i18n="koreaLotto">한국 로또 6/45</h3>
+                    <p data-i18n="koreaLottoRules">1부터 45까지의 숫자 중 6개의 번호를 선택합니다. 매주 토요일 추첨합니다.</p>
+                </article>
+                <article data-sal="slide-up" data-sal-delay="100">
+                    <h3 data-i18n="usPowerball">미국 파워볼</h3>
+                    <p data-i18n="usPowerballRules">1부터 69까지의 화이트볼 5개와 1부터 26까지의 파워볼 1개를 선택합니다. 잭팟 당첨 확률이 매우 낮지만, 상금이 어마어마합니다.</p>
+                </article>
+                <article data-sal="slide-up" data-sal-delay="200">
+                    <h3 data-i18n="euromillions">유로밀리언</h3>
+                    <p data-i18n="euromillionsRules">1부터 50까지의 메인 번호 5개와 1부터 12까지의 럭키 스타 번호 2개를 선택합니다. 유럽 9개국에서 공동으로 운영합니다.</p>
+                </article>
+            </div>
+        </section>
 
+        <section id="statistics">
+            <h2 data-i18n="statisticsTitle">재미로 보는 통계</h2>
+            <div class="grid">
+                <article data-sal="fade">
+                    <h3 data-i18n="hotNumbers">자주 나온 번호 (Hot)</h3>
+                    <p data-i18n="hotNumbersDesc">최근 추첨에서 자주 등장한 번호들입니다. (자리 표시자 데이터)</p>
+                    <div class="stat-numbers">
+                        <span>7</span><span>12</span><span>21</span><span>33</span><span>45</span>
+                    </div>
+                </article>
+                <article data-sal="fade" data-sal-delay="100">
+                    <h3 data-i18n="coldNumbers">오래 나온 번호 (Cold)</h3>
+                    <p data-i18n="coldNumbersDesc">최근 추첨에서 오랫동안 등장하지 않은 번호들입니다. (자리 표시자 데이터)</p>
+                    <div class="stat-numbers">
+                        <span>3</span><span>18</span><span>25</span><span>38</span><span>41</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container">
+        <small>
+            <a href="privacy.html" data-i18n="privacyPolicy">개인정보처리방침</a> • 
+            <a href="about.html" data-i18n="about">소개</a> • 
+            <a href="contact.html" data-i18n="contact">문의</a>
+        </small>
+    </footer>
     
+    <script src="https://unpkg.com/sal.js/dist/sal.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

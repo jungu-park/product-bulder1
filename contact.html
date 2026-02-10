@@ -1,52 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - LottoLuck</title>
+    <title data-i18n="contactPageTitle">문의 - LottoLuck</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/sal.js/dist/sal.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo" data-i18n="lottoLuck">LottoLuck</div>
-        <nav class="main-nav">
-            <a href="index.html" data-i18n="home">홈</a>
-
-            <a href="about.html" data-i18n="about">소개</a>
-            <a href="contact.html" data-i18n="contact">문의</a>
-            <a href="privacy.html" data-i18n="privacyPolicy">개인정보처리방침</a>
+    <header class="container">
+        <nav>
+            <ul>
+                <li><strong data-i18n="lottoLuck">LottoLuck</strong></li>
+            </ul>
+            <ul>
+                <li><a href="index.html" data-i18n="home">홈</a></li>
+                <li><a href="blog.html" data-i18n="blog">블로그</a></li>
+                <li><a href="about.html" data-i18n="about">소개</a></li>
+                <li><a href="contact.html" data-i18n="contact">문의</a></li>
+                <li><a href="privacy.html" data-i18n="privacyPolicy">개인정보처리방침</a></li>
+                <li>
+                    <details role="list" dir="rtl">
+                        <summary aria-haspopup="listbox" role="link" class="lang-selector-summary">
+                            <span id="active-lang">한국어</span>
+                        </summary>
+                        <ul role="listbox">
+                            <li><a href="#" id="lang-ko" data-lang="ko">한국어</a></li>
+                            <li><a href="#" id="lang-en" data-lang="en">English</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
         </nav>
-        <div class="lang-selector">
-            <button id="lang-ko" class="lang-button active" data-lang="ko">한국어</button>
-            <button id="lang-en" class="lang-button" data-lang="en">English</button>
-        </div>
-        <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"></div>
-            </label>
-        </div>
     </header>
 
-    <div class="app-section active">
-        <div class="container form-container">
-            <h2 data-i18n="contactUsTitle">Contact Us</h2>
+    <main class="container">
+        <section data-sal="slide-up">
+            <h1 data-i18n="contactUsTitle">Contact Us</h1>
             <p data-i18n="contactUsMessage">If you have any questions, feedback, or partnership inquiries, please don't hesitate to reach out to us using the form below.</p>
             <form action="https://formspree.io/f/xbdknqbq" method="POST">
-                <label for="name" data-i18n="nameLabel">이름:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="name" data-i18n="nameLabel">Name</label>
+                <input type="text" id="name" name="name" data-i18n-placeholder="namePlaceholder" placeholder="Your Name" required>
 
-                <label for="email" data-i18n="emailLabel">이메일:</label>
-                <input type="email" id="email" name="_replyto" required>
+                <label for="email" data-i18n="emailLabel">Email</label>
+                <input type="email" id="email" name="_replyto" data-i18n-placeholder="emailPlaceholder" placeholder="Your Email" required>
 
-                <label for="message" data-i18n="messageLabel">문의 내용:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="message" data-i18n="messageLabel">Message</label>
+                <textarea id="message" name="message" rows="5" data-i18n-placeholder="messagePlaceholder" placeholder="Your message..." required></textarea>
 
-                <button type="submit" data-i18n="submitInquiry">문의 제출</button>
+                <button type="submit" data-i18n="submitInquiry">Submit Inquiry</button>
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 
+    <footer class="container">
+        <small>
+            <a href="privacy.html" data-i18n="privacyPolicy">개인정보처리방침</a> • 
+            <a href="about.html" data-i18n="about">소개</a> • 
+            <a href="contact.html" data-i18n="contact">문의</a>
+        </small>
+    </footer>
+    
+    <script src="https://unpkg.com/sal.js/dist/sal.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
