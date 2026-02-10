@@ -43,6 +43,13 @@ This project is undergoing a significant overhaul to address Google AdSense reje
         *   Updated the `lottoDetails` object in `main.js` to use the `translations` object for the `info` property.
         *   Ensured initial page load displays content in the `currentLang` from `localStorage`.
 
+6.  **Remove Redundant Lotto Number Recommendation Section (Completed):**
+    *   **Task:** Remove the `#number-recommendation` section (which was the old Home section content) from `index.html` and its corresponding navigation links. The "Home" section now effectively serves as the "Lotto Number Recommendation" page.
+    *   **Actions:**
+        *   Removed the `<div id="number-recommendation" class="app-section">` block from `index.html`.
+        *   Removed the `<a href="#number-recommendation" data-i18n="lottoNumberRecommendation">로또 번호 추천</a>` link from the header in `index.html`, `about.html`, and `contact.html`.
+        *   No specific changes needed in `main.js` for this removal, as the lotto generation logic is now in the default `#intro` section.
+
 ## Final Steps
 
 All requested modifications have been implemented. The site should now have a better structure, improved content focus, and new features as per the user's request. I will now inform the user that the task is complete.
