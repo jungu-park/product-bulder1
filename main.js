@@ -48,7 +48,14 @@ const translations = {
         blogPost2Content: "미국 파워볼은 세계에서 가장 큰 잭팟 상금으로 유명합니다. 때로는 1조원이 훌쩍 넘는 당첨금이 나오기도 하죠. 파워볼은 어떻게 운영되며, 한국에서도 참여할 수 있을까요? 이 글에서는 파워볼의 역사와 게임 방법, 그리고 역대 최고 당첨금 기록에 대해 알아봅니다.",
         koreaLottoInfo: "1부터 45까지의 숫자 중 6개를 선택합니다.",
         usPowerballInfo: "1부터 69까지의 숫자 5개와 1부터 26까지의 파워볼 숫자 1개를 선택합니다.",
-        euromillionsInfo: "1부터 50까지의 숫자 5개와 1부터 12까지의 럭키 스타 숫자 2개를 선택합니다."
+        euromillionsInfo: "1부터 50까지의 숫자 5개와 1부터 12까지의 럭키 스타 숫자 2개를 선택합니다.",
+        numGamesLabel: "게임 수",
+        numGames1: "1 게임",
+        numGames2: "2 게임",
+        numGames3: "3 게임",
+        numGames4: "4 게임",
+        numGames5: "5 게임",
+        gamePrefix: "게임"
     },
     en: {
         pageTitle: "LottoLuck - Lucky Lotto Number Generator",
@@ -98,7 +105,14 @@ const translations = {
         blogPost2Content: "The US Powerball is famous for having the largest jackpots in the world, sometimes exceeding $1 billion. How does Powerball work, and can you participate from outside the US? In this article, we delve into the history of Powerball, how to play, and the all-time record jackpots.",
         koreaLottoInfo: "Choose 6 numbers from 1 to 45.",
         usPowerballInfo: "Choose 5 numbers from 1 to 69 and 1 Powerball number from 1 to 26.",
-        euromillionsInfo: "Choose 5 main numbers from 1 to 50 and 2 Lucky Star numbers from 1 to 12."
+        euromillionsInfo: "Choose 5 main numbers from 1 to 50 and 2 Lucky Star numbers from 1 to 12.",
+        numGamesLabel: "Number of Games",
+        numGames1: "1 Game",
+        numGames2: "2 Games",
+        numGames3: "3 Games",
+        numGames4: "4 Games",
+        numGames5: "5 Games",
+        gamePrefix: "Game"
     }
 };
 
@@ -135,6 +149,17 @@ function translatePage() {
         const selectedLottoKey = lottoTypeSelect.value + 'Info';
         lottoInfoDiv.textContent = translations[currentLang][selectedLottoKey];
     }
+
+    // Update the num-games-select options
+    const numGamesSelect = document.getElementById('num-games-select');
+    if (numGamesSelect) {
+        for (let i = 1; i <= 5; i++) {
+            const option = numGamesSelect.querySelector(`option[value="${i}"]`);
+            if (option) {
+                option.textContent = translations[currentLang][`numGames${i}`];
+            }
+        }
+    }
 }
 
 function setLanguage(lang) {
@@ -149,11 +174,14 @@ const generateBtn = document.getElementById('generate');
 const numbersDiv = document.getElementById('numbers');
 const lottoTypeSelect = document.getElementById('lotto-type');
 const lottoInfoDiv = document.getElementById('lotto-info');
+const numGamesSelect = document.getElementById('num-games-select');
+
 
 const lottoDetails = {
     'korea-lotto': {
         range: 45,
         count: 6,
+        maxGames: 5,
         infoKey: 'koreaLottoInfo'
     },
     'us-powerball': {
@@ -161,6 +189,7 @@ const lottoDetails = {
         count: 5,
         powerballRange: 26,
         powerballCount: 1,
+        maxGames: 3, // Example max games for Powerball
         infoKey: 'usPowerballInfo'
     },
     'euromillions': {
@@ -168,59 +197,89 @@ const lottoDetails = {
         count: 5,
         luckyStarRange: 12,
         luckyStarCount: 2,
+        maxGames: 2, // Example max games for EuroMillions
         infoKey: 'euromillionsInfo'
     }
 };
 
+function updateNumGamesOptions() {
+    const selectedLotto = lottoTypeSelect.value;
+    const details = lottoDetails[selectedLotto];
+    numGamesSelect.innerHTML = '';
+    for (let i = 1; i <= details.maxGames; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = translations[currentLang][`numGames${i}`];
+        numGamesSelect.appendChild(option);
+    }
+}
+
+
 function generateNumbers() {
-    if (!lottoTypeSelect) return; // Guard against running on pages without the generator
+    if (!lottoTypeSelect || !numGamesSelect) return;
 
     const selectedLotto = lottoTypeSelect.value;
     const details = lottoDetails[selectedLotto];
+    const numGamesToGenerate = parseInt(numGamesSelect.value);
 
-    numbersDiv.innerHTML = '';
+    numbersDiv.innerHTML = ''; // Clear previous numbers
+
+    for (let game = 0; game < numGamesToGenerate; game++) {
+        const gameContainer = document.createElement('div');
+        gameContainer.classList.add('game-container');
+
+        const gameLabel = document.createElement('h4');
+        gameLabel.textContent = `${translations[currentLang].gamePrefix} ${game + 1}`;
+        gameContainer.appendChild(gameLabel);
+
+        const numbersDisplay = document.createElement('div');
+        numbersDisplay.classList.add('numbers-display');
+        gameContainer.appendChild(numbersDisplay);
+
+        const numbers = new Set();
+        while (numbers.size < details.count) {
+            numbers.add(Math.floor(Math.random() * details.range) + 1);
+        }
+
+        [...numbers].sort((a, b) => a - b).forEach((number, index) => {
+            const numberDiv = document.createElement('div');
+            numberDiv.classList.add('number', 'lotto-ball-animated');
+            numberDiv.textContent = number;
+            numberDiv.style.animationDelay = `${(game * 0.5) + (index * 0.1)}s`;
+            numbersDisplay.appendChild(numberDiv);
+        });
+
+        if (details.powerballCount) {
+            const powerballNumbers = new Set();
+            while (powerballNumbers.size < details.powerballCount) {
+                powerballNumbers.add(Math.floor(Math.random() * details.powerballRange) + 1);
+            }
+            [...powerballNumbers].forEach((number, index) => {
+                const numberDiv = document.createElement('div');
+                numberDiv.classList.add('number', 'powerball', 'lotto-ball-animated');
+                numberDiv.textContent = number;
+                numberDiv.style.animationDelay = `${(game * 0.5) + (numbers.size * 0.1) + (index * 0.1)}s`;
+                numbersDisplay.appendChild(numberDiv);
+            });
+        }
+        
+        if (details.luckyStarCount) {
+            const luckyStarNumbers = new Set();
+            while (luckyStarNumbers.size < details.luckyStarCount) {
+                luckyStarNumbers.add(Math.floor(Math.random() * details.luckyStarRange) + 1);
+            }
+            [...luckyStarNumbers].sort((a, b) => a - b).forEach((number, index) => {
+                const numberDiv = document.createElement('div');
+                numberDiv.classList.add('number', 'lucky-star', 'lotto-ball-animated');
+                numberDiv.textContent = number;
+                numberDiv.style.animationDelay = `${(game * 0.5) + (numbers.size * 0.1) + (details.powerballCount || 0) * 0.1 + (index * 0.1)}s`;
+                numbersDisplay.appendChild(numberDiv);
+            });
+        }
+        numbersDiv.appendChild(gameContainer);
+    }
+
     lottoInfoDiv.textContent = translations[currentLang][details.infoKey];
-
-    const numbers = new Set();
-    while (numbers.size < details.count) {
-        numbers.add(Math.floor(Math.random() * details.range) + 1);
-    }
-
-    [...numbers].sort((a, b) => a - b).forEach((number, index) => {
-        const numberDiv = document.createElement('div');
-        numberDiv.classList.add('number', 'lotto-ball-animated');
-        numberDiv.textContent = number;
-        numberDiv.style.animationDelay = `${index * 0.1}s`;
-        numbersDiv.appendChild(numberDiv);
-    });
-
-    if (details.powerballCount) {
-        const powerballNumbers = new Set();
-        while (powerballNumbers.size < details.powerballCount) {
-            powerballNumbers.add(Math.floor(Math.random() * details.powerballRange) + 1);
-        }
-        [...powerballNumbers].forEach((number, index) => {
-            const numberDiv = document.createElement('div');
-            numberDiv.classList.add('number', 'powerball', 'lotto-ball-animated');
-            numberDiv.textContent = number;
-            numberDiv.style.animationDelay = `${(numbers.size + index) * 0.1}s`;
-            numbersDiv.appendChild(numberDiv);
-        });
-    }
-    
-    if (details.luckyStarCount) {
-        const luckyStarNumbers = new Set();
-        while (luckyStarNumbers.size < details.luckyStarCount) {
-            luckyStarNumbers.add(Math.floor(Math.random() * details.luckyStarRange) + 1);
-        }
-        [...luckyStarNumbers].sort((a, b) => a - b).forEach((number, index) => {
-            const numberDiv = document.createElement('div');
-            numberDiv.classList.add('number', 'lucky-star', 'lotto-ball-animated');
-            numberDiv.textContent = number;
-            numberDiv.style.animationDelay = `${(numbers.size + (details.powerballCount || 0) + index) * 0.1}s`;
-            numbersDiv.appendChild(numberDiv);
-        });
-    }
 }
 
 
@@ -239,9 +298,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langEnBtn) langEnBtn.addEventListener('click', (e) => { e.preventDefault(); setLanguage('en'); });
 
     // Attach lottery generator listeners if on the correct page
-    if (generateBtn) {
+    if (generateBtn && lottoTypeSelect && numGamesSelect) {
+        lottoTypeSelect.addEventListener('change', () => {
+            updateNumGamesOptions(); // Update options when lotto type changes
+            generateNumbers(); // Generate new numbers
+        });
+        numGamesSelect.addEventListener('change', generateNumbers); // Generate numbers when num games changes
         generateBtn.addEventListener('click', generateNumbers);
-        lottoTypeSelect.addEventListener('change', generateNumbers);
+
+        updateNumGamesOptions(); // Initial update of num games options
         generateNumbers(); // Initial generation
     }
 });

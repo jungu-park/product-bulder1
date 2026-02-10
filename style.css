@@ -133,3 +133,28 @@ footer.container {
     padding: 1rem;
     border-top: 1px solid var(--card-border);
 }
+
+/* Multi-game display styles */
+.game-container {
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--card-background-color);
+    box-shadow: var(--card-box-shadow);
+}
+
+.game-container h4 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--primary-hover);
+    text-align: center;
+}
+
+.game-container .numbers-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}

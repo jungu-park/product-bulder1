@@ -13,36 +13,19 @@ This project is undergoing a significant overhaul to address Google AdSense reje
 *   **`main.js`**: Has been updated to manage the new content sections, initialize Sal.js, and provide the full internationalization logic.
 *   **Visual Assets**: New icons and backgrounds have been created using CSS for fast load times and a clean, modern aesthetic.
 
-## Current Plan: Content & Visual Overhaul for AdSense Approval
+## Current Plan: Implement Number of Games Selection
 
-1.  **Research & Library Selection (Completed):**
-    *   **AdSense Trends:** Completed. Conclusion: High-quality, unique content is paramount.
-    *   **UI Framework:** Selected and integrated **Pico.css**.
-    *   **Animation Library:** Selected and integrated **Sal.js**.
-    *   **Image Strategy:** Decided on and implemented **CSS for visuals**.
-
-2.  **Integrate Frameworks & Libraries (Completed):**
-    *   **Task:** Add Pico.css and Sal.js to the project.
+1.  **Implement Number of Games Selection Feature (Completed):**
+    *   **Task:** Allow users to select how many sets of lottery numbers (games) they want to generate, with country-specific maximums (e.g., 1-5 for Korea Lotto).
     *   **Actions:**
-        *   Added the Pico.css CDN link to the `<head>` of all HTML files.
-        *   Added Sal.js CSS and JS links to all HTML files.
-        *   Initialized Sal.js in `main.js`.
-        *   Refactored `style.css` to work with Pico.css.
-
-3.  **Content Enrichment & Visual Refinement (Completed):**
-    *   **Task:** Add new, valuable content sections to `index.html` and style them using Pico.css and custom CSS.
+        *   Modified `index.html` to add an input element (e.g., `<input type="number">` or `<select>`) in the lotto generator section to allow users to specify the number of games. Added `data-i18n` attributes for translation.
+        *   Modified `main.js` to update the `lottoDetails` object to include a `maxGames` property for each lottery type; modified the `generateNumbers` function to read the selected number of games from the new input element and loop the number generation process; adjusted the display logic to clearly present multiple sets of generated numbers; and added new translations to the `translations` object.
+        *   Modified `style.css` to add necessary styles for the new input element and for structuring the display of multiple sets of lottery numbers.
+2.  **Full i18n Review (Completed):**
+    *   **Task:** Ensure all new UI elements and dynamically generated text related to this feature are properly translated.
     *   **Actions:**
-        *   **"How to Play" Section:** Created a grid of `<article>` elements explaining the rules for each lottery.
-        *   **"Statistics" Section:** Created a grid of `<article>` elements for "hot" and "cold" numbers.
-        *   **CSS Visuals:** Implemented new styles for the lottery balls and other elements.
-        *   **Blog Page:** Created `blog.html` with placeholder articles and added a link to the main navigation.
-
-4.  **Full Internationalization (i18n) Review (Completed):**
-    *   **Task:** Ensure all new content is fully translatable.
-    *   **Actions:**
-        *   Updated the `translations` object in `main.js` with all new text strings.
-        *   Added `data-i18n` attributes to all new text elements.
-        *   Verified that the i18n logic correctly translates all content.
+        *   Updated the `translations` object in `main.js` with new text strings for the game selection input and display.
+        *   Added `data-i18n` attributes to all new text elements in `index.html`.
 
 ## Final Steps
 
