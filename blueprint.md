@@ -1,55 +1,59 @@
-# Multi-App Platform (소개, 동물상, 로또, 제휴 문의, Disqus, Google AdSense)
+# Multi-App Platform (AdSense Improvement Project)
 
 ## Overview
 
-A single-page web application featuring multiple interactive tools: a Site Introduction, an Animal Look-alike Test using Teachable Machine (with **both webcam and image upload functionality**), a Lotto Number Generator, a partnership inquiry form (Formspree integrated), and a Disqus comment section. The platform supports dark/light theme switching and now includes Google AdSense integration. The site has been optimized for AdSense approval with content additions and technical improvements, including a dedicated Privacy Policy page.
+This project is undergoing a significant overhaul to address a Google AdSense rejection. The primary goal is to improve site quality, content value, and user experience to meet AdSense program policies. The "animal look-alike test" feature is being removed, and a more robust "Country-Specific Lottery Number Generator" is being added. The site structure will also be improved with a proper navigation bar and essential static pages.
 
 ## Project Outline
 
-*   **`index.html`**: The main HTML file, structured with distinct sections for each application and a navigation system to switch between them. Includes necessary library imports for Teachable Machine and Disqus, plus Google AdSense script and meta tag in the `<head>`. Also contains new meta tags for SEO and descriptive content for sections.
-*   **`privacy.html`**: A new dedicated HTML file containing a detailed privacy policy for the site.
-*   **`style.css`**: The CSS file for styling all application sections, navigation, and maintaining a responsive design with dark/light theme support.
-*   **`main.js`**: The JavaScript file containing logic for theme switching, section navigation, lotto number generation, and the refactored Teachable Machine integration (**supporting both webcam and image upload** with prediction logic).
-*   **`ads.txt`**: A new file in the root directory for Google AdSense verification.
-*   **`robots.txt`**: A new file in the root directory to guide search engine crawlers.
-*   **Teachable Machine Model**: Now loaded directly from a hosted URL (`https://teachablemachine.withgoogle.com/models/guvsM29DK/`). The local `my_model/` directory is no longer needed.
+*   **`index.html`**: The main HTML file. It will be restructured to include a new header with clear navigation, a new lottery section, and placeholder sections for "About Us" and "Contact Us". The old "animal-test" and Disqus sections will be removed.
+*   **`about.html`**: A new page with placeholder "About Us" content.
+*   **`contact.html`**: A new page with placeholder "Contact Us" content, potentially linking to the existing inquiry form.
+*   **`style.css`**: The stylesheet will be updated to remove styles related to the old features and add styles for the new navigation, lottery section, and other improvements.
+*   **`main.js`**: The JavaScript file will be cleaned up to remove the Teachable Machine logic. New JavaScript will be added for the interactive, multi-country lottery number generator.
+*   **`privacy.html`**: The existing privacy policy page will be kept and linked from the new navigation.
+*   **`ads.txt`**: Will be reviewed to ensure it's correct.
+*   **`robots.txt`**: Will be reviewed.
 
-## Current Plan
+## Current Plan: AdSense Remediation
 
-1.  **Modify `index.html`**:
-    *   **Reordered navigation buttons:** "소개" (Intro) is now the first button, followed by "동물상 테스트", "로또 번호 생성기", "제휴 문의".
-    *   **Reordered `app-section`s:** The `#intro` (formerly `#about`) section is now the first `app-section` in the HTML, followed by `#animal-test`, `#lotto`, and `#inquiry`.
-    *   **Updated "Animal Face Test" section:**
-        *   Title changed from "말과 닮은꼴" to "동물상".
-        *   **Reintroduced "카메라 시작" button.**
-        *   Ensured `webcam-container` is present and its `display: none;` inline style is removed (to be controlled by JS).
-        *   `uploaded-image-container` is initially hidden (controlled by JS).
-        *   **Added descriptive paragraph explaining the "동물상" test.**
-    *   **Refined "소개" section:** Title changed from "About This Platform" to "소개". Content now includes detailed "사이트 소개" (Site Introduction) and "주요 기능" (Key Features). Privacy Policy content has been removed and a link to `privacy.html` is provided.
-    *   **Added basic SEO meta tags** (`description`, `keywords`) to the `<head>`.
-    *   **Google AdSense Integration:** Added the AdSense script and meta tag to the `<head>` section.
-2.  **Modify `main.js`**:
-    *   **Updated `DOMContentLoaded` logic:** Ensures the "소개" section is active by default on page load.
-    *   **Teachable Machine Model URL updated to online hosted model:** `https://teachablemachine.withgoogle.com/models/guvsM29DK/`.
-    *   **Reintroduced all webcam-related functions and logic (`webcam`, `initWebcam`, `loop`, `predictWebcam`).**
-    *   Teachable Machine functionality now supports **both image file uploads and webcam input**.
-    *   `loadModel()` is called on `DOMContentLoaded` to ensure the model is loaded early.
-    *   `resetTeachableMachine()` function adjusted to properly handle both webcam and image states.
-    *   Added `try-catch` block to `loadModel()` for better error reporting if model files are missing.
-    *   Improved clarity and robustness of element IDs (e.g., `labelContainerTM`).
-    *   **Prediction results now display as percentages** (`(probability * 100).toFixed(0) + '%'`).
-3.  **Refactor `style.css`**:
-    *   **Shrunk Disqus comment section:** Reduced `max-width` of `.disqus-container` to `400px`.
-    *   **Pastel background:** Updated `--background-color` variables for both light and dark themes to pastel shades. Also applied pastel colors to Lotto numbers.
-    *   Ensured styles are compatible with both webcam and image upload containers.
-    *   **Added background color to prediction result divs** (`#label-container div`) using `var(--button-bg-color)` and `color: white;`.
-    *   Ensured all styles are compatible with dark/light themes.
-4.  **Created `ads.txt`**: A new file named `ads.txt` has been created in the root directory with the provided AdSense content.
-5.  **Created `robots.txt`**: A new file named `robots.txt` has been created in the root directory with basic rules.
-6.  **Created `privacy.html`**: A new dedicated HTML file containing a detailed, generic privacy policy for the site.
-7.  **Removed `my_model` directory**: The local `my_model` directory has been deleted as it is no longer needed.
-8.  **Commit and Push**: Stage and commit all changes, then push to the remote repository.
+1.  **Analyze AdSense Policies (Completed):** Reviewed AdSense help documents. The key is to provide unique, valuable content and a good user experience, and have a clear site structure with essential pages (`About`, `Contact`, `Privacy`).
 
-## Important Note on Teachable Machine Functionality:
+2.  **Update `blueprint.md` (Completed):** The blueprint is updated to reflect the new direction of the project.
 
-The "동물상" (Animal Face Test) feature now loads its model directly from `https://teachablemachine.withgoogle.com/models/guvsM29DK/`. This eliminates the need for local model files. If the feature is not working, please check the browser's developer console for any JavaScript errors, especially those related to `tmImage.load` or `model.predict`, which might indicate network issues or problems with the hosted model itself.
+3.  **Remove Low-Value Feature:**
+    *   **Task:** Eliminate the "동물상 테스트" (Animal Look-alike Test) feature.
+    *   **Actions:**
+        *   Remove the `#animal-test` section from `index.html`.
+        *   Remove the corresponding navigation button from `index.html`.
+        *   Delete all Teachable Machine related JavaScript (`loadModel`, `initWebcam`, `predict`, etc.) from `main.js`.
+        *   Remove all associated CSS from `style.css`.
+        *   Remove the `script` tags for `tf.js` and `teachablemachine-image` from `index.html`.
+
+4.  **Enhance Content with a High-Quality Feature:**
+    *   **Task:** Create a "Country-Specific Lottery Number Generator".
+    *   **Actions:**
+        *   Design a new UI in `index.html` allowing users to select a country/lottery (e.g., USA Powerball, EuroMillions, Korea Lotto 6/45).
+        *   Implement the logic in `main.js` to generate numbers based on the rules of the selected lottery (e.g., different number ranges, bonus numbers).
+        *   Add information about each lottery, such as draw days or a link to the official site, to increase content value.
+        *   Style the new section in `style.css`.
+
+5.  **Improve Site Structure and Navigation:**
+    *   **Task:** Replace the button-based navigation with a more traditional header/navigation bar.
+    *   **Actions:**
+        *   Create a `<header>` element in `index.html`.
+        *   Add navigation links for "Home", "Lottery", "About", "Contact", and "Privacy Policy".
+        *   Style the new header and navigation in `style.css`.
+    *   **Task:** Add essential static pages.
+    *   **Actions:**
+        *   Create `about.html` and `contact.html` with placeholder text. Users will be advised to fill these in.
+
+6.  **General Cleanup and Quality Improvements:**
+    *   **Task:** Remove the Disqus comment section.
+    *   **Actions:** Remove the `disqus_thread` div and the associated scripts from `index.html` and styles from `style.css`.
+    *   **Task:** Review and ensure `ads.txt` and `robots.txt` are correct.
+    *   **Task:** Ensure the overall design is clean, professional, and mobile-responsive.
+
+## Phase 2: Implementation
+
+The next steps involve acting on this plan by modifying the project files. I will start by modifying `index.html` to remove the old feature and add the new structure.

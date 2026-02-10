@@ -1,27 +1,23 @@
 :root {
-    --background-color: #f0f4f8; /* Light pastel blue-gray */
+    --background-color: #f0f4f8;
     --text-color: #333;
-    --container-bg-color: #ffffff; /* White containers for light theme */
-    --button-bg-color: #81c784; /* Light green */
+    --container-bg-color: #ffffff;
+    --button-bg-color: #81c784;
     --button-hover-bg-color: #66bb6a;
-    --nav-button-bg: #e0e0e0;
-    --nav-button-text: #333;
-    --nav-button-hover-bg: #d0d0d0;
-    --nav-button-active-bg: #81c784;
-    --nav-button-active-text: white;
+    --header-bg-color: #ffffff;
+    --header-text-color: #333;
+    --header-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 [data-theme="dark"] {
-    --background-color: #455a64; /* Darker pastel blue-gray */
+    --background-color: #455a64;
     --text-color: #e0e0e0;
-    --container-bg-color: #37474f; /* Dark containers for dark theme */
-    --button-bg-color: #64b5f6; /* Light blue */
+    --container-bg-color: #37474f;
+    --button-bg-color: #64b5f6;
     --button-hover-bg-color: #42a5f5;
-    --nav-button-bg: #5a707a;
-    --nav-button-text: #e0e0e0;
-    --nav-button-hover-bg: #6f8691;
-    --nav-button-active-bg: #64b5f6;
-    --nav-button-active-text: white;
+    --header-bg-color: #37474f;
+    --header-text-color: #e0e0e0;
+    --header-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 body {
@@ -33,17 +29,56 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
-    padding: 20px;
+    padding-top: 80px; /* Make space for the fixed header */
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Header and Navigation */
+.main-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    box-shadow: var(--header-box-shadow);
+    z-index: 1000;
+    height: 70px;
     box-sizing: border-box;
 }
 
-/* Theme Switch Specific Styles */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.main-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: var(--header-text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+/* Theme Switch Styles */
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 20px;
-    right: 20px;
 }
 
 .theme-switch {
@@ -96,48 +131,13 @@ input:checked + .slider:before {
 }
 
 
-/* Main Navigation */
-.main-nav {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 40px;
-    width: 100%;
-    max-width: 800px; /* Adjust as needed */
-    flex-wrap: wrap;
-}
-
-.main-nav .nav-button {
-    padding: 10px 15px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--nav-button-bg);
-    color: var(--nav-button-text);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.main-nav .nav-button:hover {
-    background-color: var(--nav-button-hover-bg);
-}
-
-.main-nav .nav-button.active {
-    background-color: var(--nav-button-active-bg);
-    color: var(--nav-button-active-text);
-}
-
-
 /* App Sections */
 .app-section {
-    display: none; /* Hide all by default */
     width: 100%;
     max-width: 600px;
-    margin-bottom: 40px; /* Space between sections if multiple active */
-}
-
-.app-section.active {
-    display: block; /* Show active section */
+    margin-bottom: 40px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .container {
@@ -146,16 +146,11 @@ input:checked + .slider:before {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    box-sizing: border-box; /* Ensure padding doesn't push width over */
+    box-sizing: border-box;
 }
 
-h1 {
-    color: var(--text-color);
-    margin-bottom: 20px;
-}
-h2 {
+h1, h2 {
     color: var(--text-color);
     margin-bottom: 20px;
 }
@@ -170,7 +165,7 @@ button {
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    margin-top: 10px; /* Added margin for buttons */
+    margin-top: 10px;
 }
 
 button:hover {
@@ -178,6 +173,28 @@ button:hover {
 }
 
 /* Lotto Specific Styles */
+.lotto-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#lotto-type {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--text-color);
+    background-color: var(--container-bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+#lotto-info {
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
 #numbers {
     margin-top: 20px;
     font-size: 2rem;
@@ -192,22 +209,24 @@ button:hover {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    color: white; /* Changed to white as individual colors now dictate background */
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     flex-shrink: 0;
+    background-color: #BAE1FF; /* Default Pastel Blue */
 }
 
-/* Individual colors for each lotto number */
-#lotto .number:nth-child(1) { background-color: #FFB3BA; } /* Pastel Red */
-#lotto .number:nth-child(2) { background-color: #BAE1FF; } /* Pastel Blue */
-#lotto .number:nth-child(3) { background-color: #BAFFC9; } /* Pastel Green */
-#lotto .number:nth-child(4) { background-color: #FFFFBA; color: #333;} /* Pastel Yellow */
-#lotto .number:nth-child(5) { background-color: #FFDFBA; } /* Pastel Orange */
-#lotto .number:nth-child(6) { background-color: #E0BBE4; } /* Pastel Purple */
+.number.powerball {
+    background-color: #FFB3BA; /* Pastel Red */
+}
+
+.number.lucky-star {
+    background-color: #FFFFBA; /* Pastel Yellow */
+    color: #333;
+}
 
 
 /* Form Specific Styles */
@@ -235,18 +254,17 @@ button:hover {
 .form-container textarea {
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid var(--text-color); /* Use text color for border */
+    border: 1px solid var(--text-color);
     border-radius: 5px;
-    background-color: var(--input-bg-color, var(--container-bg-color)); /* Fallback for input */
+    background-color: var(--container-bg-color);
     color: var(--text-color);
     font-size: 1rem;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .form-container input[type="text"]:focus,
 .form-container input[type="email"]:focus,
 .form-container textarea:focus {
-    border-color: var(--button-bg-color); /* Use accent color on focus */
+    border-color: var(--button-bg-color);
     outline: none;
 }
 
@@ -258,100 +276,8 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
-    transition: background-color 0.3s ease;
 }
 
 .form-container button[type="submit"]:hover {
     background-color: var(--button-hover-bg-color);
-}
-
-
-/* Teachable Machine Specific Styles */
-.teachable-machine-container {
-    /* container already styled above */
-}
-
-.test-options {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-#webcam-container {
-    #webcam-container {
-        display: none; /* 기본은 숨김 */
-        margin: 20px auto; /* 가운데 정렬 추가 */
-        justify-content: center; /* 내부 요소 가운데 정렬 */
-    }
-}
-
-#uploaded-image-container {
-    margin-top: 20px;
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    overflow: hidden;
-    display: block; /* To center the canvas */
-    margin: 20px auto;
-
-    width: 200px;
-    height: 200px;
-    background-color: #000; /* Black background for webcam area */
-}
-
-#uploaded-image-container canvas {
-    display: block; /* Remove extra space below canvas */
-}
-
-
-#label-container {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: left; /* Align predictions to left within container */
-    max-width: 200px; /* Match webcam width */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#label-container div {
-    margin-bottom: 5px;
-    padding: 5px;
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    background-color: var(--button-bg-color); /* Use button bg color */
-    color: white; /* Ensure text is readable */
-}
-
-/* Disqus Specific Styles */
-.disqus-container {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: var(--container-bg-color);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px; /* Reduced width for comment section */
-    box-sizing: border-box;
-}
-
-.file-upload {
-    display: flex;
-    flex-direction: column; /* 세로로 배치 */
-    align-items: center;    /* 가로축 기준 중앙 정렬 */
-    justify-content: center;
-    text-align: center;
-}
-
-#face-image {
-    display: block;
-    margin: 0 auto;        /* 좌우 여백을 자동으로 설정해 가운데 배치 */
-    margin-bottom: 20px;   /* 결과창과 간격을 띄움 */
-}
-
-.label-container {
-    width: 100%;           /* 부모 너비에 맞춤 */
-    max-width: 400px;      /* 너무 넓어지지 않게 최대 너비 제한 */
-    margin: 0 auto;        /* 가운데 정렬 */
 }
