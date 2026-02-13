@@ -36,22 +36,43 @@
     </header>
 
     <main class="container">
-        <section data-sal="slide-up">
-            <h1 data-i18n="contactUsTitle">Contact Us</h1>
-            <p data-i18n="contactUsMessage">If you have any questions, feedback, or partnership inquiries, please don't hesitate to reach out to us using the form below.</p>
-            <form action="https://formspree.io/f/xbdknqbq" method="POST">
-                <label for="name" data-i18n="nameLabel">Name</label>
-                <input type="text" id="name" name="name" data-i18n-placeholder="namePlaceholder" placeholder="Your Name" required>
+        <div class="grid">
+            <section data-sal="slide-up">
+                <h1 data-i18n="contactUsTitle">Contact Us</h1>
+                <p data-i18n="contactUsMessage">If you have any questions, feedback, or partnership inquiries, please don't hesitate to reach out to us using the form below. But first, check our FAQ section!</p>
+                <form action="https://formspree.io/f/xbdknqbq" method="POST">
+                    <label for="name" data-i18n="nameLabel">Name</label>
+                    <input type="text" id="name" name="name" data-i18n-placeholder="namePlaceholder" placeholder="Your Name" required>
 
-                <label for="email" data-i18n="emailLabel">Email</label>
-                <input type="email" id="email" name="_replyto" data-i18n-placeholder="emailPlaceholder" placeholder="Your Email" required>
+                    <label for="email" data-i18n="emailLabel">Email</label>
+                    <input type="email" id="email" name="_replyto" data-i18n-placeholder="emailPlaceholder" placeholder="Your Email" required>
 
-                <label for="message" data-i18n="messageLabel">Message</label>
-                <textarea id="message" name="message" rows="5" data-i18n-placeholder="messagePlaceholder" placeholder="Your message..." required></textarea>
+                    <label for="message" data-i18n="messageLabel">Message</label>
+                    <textarea id="message" name="message" rows="5" data-i18n-placeholder="messagePlaceholder" placeholder="Your message..." required></textarea>
 
-                <button type="submit" data-i18n="submitInquiry">Submit Inquiry</button>
-            </form>
-        </section>
+                    <button type="submit" data-i18n="submitInquiry">Submit Inquiry</button>
+                </form>
+            </section>
+            <section data-sal="slide-up" data-sal-delay="100">
+                <h2 data-i18n="faqTitle">자주 묻는 질문 (FAQ)</h2>
+                <details>
+                    <summary data-i18n="faq1Title">LottoLuck 번호는 당첨 확률이 더 높은가요?</summary>
+                    <p data-i18n="faq1Content">아니요, 저희가 생성하는 번호는 완전히 무작위이며 다른 번호보다 당첨 확률이 높지 않습니다. 로또는 공정한 확률 게임이며 저희 서비스는 재미와 편의를 위해 번호를 추천해 드리는 것입니다.</p>
+                </details>
+                <details>
+                    <summary data-i18n="faq2Title">이 사이트는 무료로 사용할 수 있나요?</summary>
+                    <p data-i18n="faq2Content">네, LottoLuck의 모든 기능은 완전히 무료입니다. 저희는 광고 수익을 통해 사이트를 운영하고 있습니다.</p>
+                </details>
+                <details>
+                    <summary data-i18n="faq3Title">새로운 로또 종류를 추가해 줄 수 있나요?</summary>
+                    <p data-i18n="faq3Content">물론입니다! 어떤 로또를 추가하기를 원하시는지 문의 양식을 통해 알려주세요. 사용자들의 요청을 적극적으로 검토하여 새로운 기능을 추가하기 위해 노력하고 있습니다.</p>
+                </details>
+                 <details>
+                    <summary data-i18n="faq4Title">제 개인정보는 안전하게 보호되나요?</summary>
+                    <p data-i18n="faq4Content">네, 저희는 사용자의 개인정보를 매우 중요하게 생각합니다. 자세한 내용은 <a href="privacy.html">개인정보처리방침</a> 페이지를 참고해 주세요.</p>
+                </details>
+            </section>
+        </div>
     </main>
 
     <footer class="container">
